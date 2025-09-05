@@ -12,10 +12,7 @@ int main(){
     cout << "Nhap mau so: ";
     cin >> b;
     
-    if ( a != (int)a || b != (int)b ){
-        cout << "Error" << endl;
-        continue;
-    }
+   
     cout << "Phan so duoc nhap la:" << a << "/" << b << endl;
     
 
@@ -73,4 +70,5 @@ int main(){
     cout << "Phan so sau khi rut gon la: " << A << "/" << B << endl;
 
     return 0;
+
 }
