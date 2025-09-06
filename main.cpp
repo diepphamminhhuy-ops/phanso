@@ -17,6 +17,17 @@ int main(){
     
 
     //xet dk
+
+    /*try {
+        if (b == 0){
+            throw b;
+        }
+    } catch (int b){
+        cout << "Error" << endl;
+        continue;
+    }*/
+
+
     if (b == 0 ){
 
         cout << "Error" << endl;
@@ -47,9 +58,9 @@ int main(){
     int A, B;  // Tu va mau so sau khi rut gon
     
 
-    if ( a > 0){
+    if ( a > 0 && b > 0){
 
-    for (int i = 1; i <= a && i <= b; i++){
+    for (int i = 1; i <= a && a <= b || i <= b && b <= a; i++){
         
             
             // c la uoc chung lon nhat
@@ -67,7 +78,7 @@ int main(){
         
     }
 
-    if ( a < 0){
+    if ( a < 0 && b > 0){
         a = -a;
         for (int i = 1; i <= a && i <= b; i++){
         
