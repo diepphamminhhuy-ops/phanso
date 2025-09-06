@@ -1,108 +1,101 @@
 #include <iostream>
+#include <algorithm>
+#include <stdexcept>
+#include <string>
 
 using namespace std;
+
+
+
+void rutgonphanso(int &a, int &b){
+
+     int ucln = __gcd(abs(a), abs(b));
+        a /= ucln;
+        b /= ucln;
+        if ( b < 0 ){
+
+        a = -a;
+        b = -b;
+    
+    }
+
+}
+
+
+bool isInteger(const string &s){
+
+    if (s.empty()) return false;
+    int start = (s[0] == '-' ? 1 : 0);
+    for (int i = start; i < (int)s.size(); i++){
+        if (!isdigit(s[i])) return false;
+    }
+    return true;
+}
 
 int main(){
 
     int a, b;
-
-    while (true){
-    cout << "Nhap tu so: ";
-    cin >> a;
-    cout << "Nhap mau so: ";
-    cin >> b;
+    string input;
+    bool flag = true;
 
 
-    cout << "Phan so duoc nhap la:" << a << "/" << b << endl;
+    while (flag){
     
+    
+    try {
 
-    //xet dk
+        //tu so
+        cout << "Nhap tu so: ";
+        
+        getline(cin, input);
+        
 
-    /*try {
-        if (b == 0){
-            throw b;
+        // xet tu so
+
+        if (!isInteger(input)){
+            
+            throw runtime_error("Error: tu so phai la so nguyen ");
         }
-    } catch (int b){
-        cout << "Error" << endl;
-        continue;
-    }*/
+        a = stoi(input);
 
+        // mau so
+        cout << "Nhap mau so: ";
+        
+        getline(cin, input);
+       
 
-    if (b == 0 ){
+        
 
-        cout << "Error" << endl;
-        continue;
-    }
-     if (a == 0){
+        // xet mau so
 
-        cout << "phan so duoc nhap la: " << a << "/" << b << endl;
-        cout << "phan so sau khi rut la: " << a << endl;
-        return 1;
-    }
+        if (!isInteger(input)){
+            
+            throw runtime_error("Error: mau so phai la so nguyen");
+        }
+        b = stoi(input);
 
-    if ( a < 0 && b < 0 || a > 0 && b < 0 ){
+        if (b == 0 ){
 
-        a = -a;
-        b = -b;
-        break;
-    }
+            throw runtime_error("Error");
 
+        }
+
+        cout << "Phan so duoc nhap la: " << a << "/" << b << endl;
+        rutgonphanso(a, b);
+
+        // In ket qua
     
-    if (b != 0){
-        break;
+        cout << "Phan so sau khi rut gon la: " << a << "/" << b << endl;
+
+        flag = false ; 
+    } 
+    catch (const exception &e){
+        cout << e.what() << endl;
+        
     }
+    
 }
     
-
-    //Rut gon phan so
-    int A, B;  // Tu va mau so sau khi rut gon
-    
-
-    if ( a > 0 && b > 0){
-
-    for (int i = 1; i <= a && a <= b || i <= b && b <= a; i++){
-        
-            
-            // c la uoc chung lon nhat
-            int c = i;
-
-            //Rut gon phan so
-            if (a % c == 0 && b % c == 0){
-                A = a / c;
-                B = b / c;
-            } else {
-                A = a;
-                B = b;
-            }
-        }
-        
-    }
-
-    if ( a < 0 && b > 0){
-        a = -a;
-        for (int i = 1; i <= a && i <= b; i++){
-        
-            
-            // c la uoc chung lon nhat
-            int c = i;
-
-            //Rut gon phan so
-            if (a % c == 0 && b % c == 0){
-                A = -(a / c);
-                B = b / c;
-            } else {
-                A = -a;
-                B = b;
-            }
-        }
-    }
-    
-   
-    
-    // In ket qua
-    
-    
-    cout << "Phan so sau khi rut gon la: " << A << "/" << B << endl;
 
     return 0;
 }
